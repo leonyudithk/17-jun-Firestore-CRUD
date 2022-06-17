@@ -1,27 +1,30 @@
 import { typesAgendar } from "../types/types"
 
 
-const initialState ={
+const initialState = {
     agendaCitas: []
 }
 
-export const citasReducers = (state = initialState, action)=>{
+export const citasReducers = (state = initialState, action) => {
     switch (action.type) {
         case typesAgendar.add:
             return {
-                agendaCitas: [...state.agendaCitas, action.payload] 
+                agendaCitas: [...state.agendaCitas, action.payload]
             }
         case typesAgendar.delete:
+            return {
+                agendaCitas: state.agendaCitas.filter(c => c.email !== action.payload)
+            }
+        case typesAgendar.list:
+            return {
+                agendaCitas: [...action.payload]
+            }
+        case typesAgendar.edit:
                 return {
-                    agendaCitas: state.agendaCitas.filter(c => c.email !== action.payload)
-               }
-               case typesAgendar.list:
-                return {
-                    agendaCitas: [...action.payload]
-               } 
-    
+                  ...state
+            }
         default:
-           return state
+            return state
     }
 
 }

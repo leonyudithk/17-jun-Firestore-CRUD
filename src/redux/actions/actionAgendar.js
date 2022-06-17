@@ -1,8 +1,42 @@
-import { addDoc, collection, deleteDoc, doc, getDocs, query, where } from "firebase/firestore"
+import { addDoc, collection, deleteDoc, doc, getDocs, query, updateDoc, where } from "firebase/firestore"
 import { bataBase } from "../../Firebase/firebaseConfig"
 import { typesAgendar } from "../types/types"
 
+//----------------editar-----------------------------///
+export const editCitaAsync = (nuevaCita)=>{
+    return async (dispatch)=>{
+        const collectionCitas = collection(bataBase, "Citas")
+        const q = query(collectionCitas, where("email", "==", nuevaCita.email))
+        const datosQ = await getDocs(q)
+        let id = ''
 
+        datosQ.forEach(async(docu)=>{
+            id = docu.id
+        })
+
+        console.log(id)
+
+        const docRef = doc(bataBase, "Citas", id)
+
+        await updateDoc(docRef, nuevaCita)
+        .then(resp =>{
+            dispatch(editCitaSync(nuevaCita))
+            dispatch(listAgendaAsync())
+        
+        })
+        .catch(error => console.log(error))
+
+       
+    }
+}
+
+export const editCitaSync = (nuevaCita)=>{
+    return {
+        type: typesAgendar.edit,
+        payload: {nuevaCita}
+
+    }
+}
 
 //-------------------Listar----------------------------//
 

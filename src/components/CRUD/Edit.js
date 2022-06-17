@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 import useForm from '../../Hooks/useForm';
+import { editCitaAsync} from '../../redux/actions/actionAgendar';
 
 const Edit = ({ datos }) => {
+    const dispatch= useDispatch()
 
     //-----------Activacion del Modal-----------------------------------//
     const [show, setShow] = useState(true);
@@ -23,9 +26,11 @@ const Edit = ({ datos }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(formValue)
-        //dispatch(actionAddAgendaAsync(formValue))
+        dispatch(editCitaAsync(formValue))
+        handleClose()
         reset()
     }
+    
     return (
         <div>
             <Modal show={show} onHide={handleClose}>

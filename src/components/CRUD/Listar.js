@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteCitaAsync } from '../../redux/actions/actionAgendar';
+import { deleteCitaAsync, listAgendaAsync } from '../../redux/actions/actionAgendar';
 import Edit from './Edit';
 
 const Listar = () => {
@@ -25,6 +25,9 @@ const handlerEditar=(citas)=>{
         setModal(true)
 }
 
+useEffect(()=>{
+    dispatch(listAgendaAsync())
+},[dispatch])
 
     return (
         <div  style={{margin: '5%', marginLeft: '10%', marginRight: '10%'}}>
