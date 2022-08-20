@@ -1,6 +1,6 @@
 # Pasos
- Maquetacion - cuando ya este capturando la informacion por consola
- - realizo proceso sinconico con redux
+ Maquetación - cuando ya este capturando la información por consola
+ - realizo proceso sincrónico con Redux
         - crear carpetas redux/ 
                             types
                             reducers
@@ -14,10 +14,10 @@
                                         delete: '[Agendar-citas] eliminar',
                                         edit : '[Agendar-citas] edit',
                             }
-        -- crear el reducers por cada typesAgendar realizo un reducers y or cada  tipo realizo un caso dentro del switch ( es importante recordar que el reducers es una funcion pura que recibe dos parametro un estado y una accion y devuelve el estado ya modificado)
+        -- crear el reducers por cada typesAgendar realizo un reducers y por cada tipo realizo un caso dentro del switch (es importante recordar que el reducers es una función pura que recibe dos parámetros un estado y una acción y devuelve el estado ya modificado)
 
-        -- crear la store (SE CREA UNA SOLA VEZ POR CADA PROYECTO/APP), esta me almacena los estados que envio de los reducers y los tengo de forma global. 
-        es importarte definir primero si voya a trbajar solo de forma sincronica o Asincronica (software intermedio un Middleware (thunk))  , debo definir una combinacion de reducers y cada vez que yo construya un nuevo reducers debo venir a la store y creer el estado para ese reducers
+        -- crear el store (SE CREA UNA SOLA VEZ POR CADA PROYECTO/APP), esta me almacena los estados que envió de los reducers y los tengo de forma global. 
+        es importarte definir primero si voy a trabajar solo de forma sincrónica o Asincrónica (software intermedio un Middleware (thunk)) , debo definir una combinación de reducers y cada vez que yo construya un nuevo reducers debo venir a la store y creer el estado para ese reducers
                     const reducers = combineReducers({
                             agendarCitaStore: citasReducers,
                             loginStore: loginReducers, 
@@ -31,22 +31,22 @@
                             )
                         )
 
-        -- al index.js y aqui debo indicarle que las rutas de salidas a view deben Proveerse de Redux como lo hago asi:
+        -- al index.js y aquí debo indicarle que las rutas de salidas a view deben Proveerse de Redux como lo hago así:
                 <Provider store={store}> 
                            <AppRouters/>
                  </Provider>
 
-          --- actiones: existen dos tipos de acciones las sincronicas y las Asincronicas
-          -- las Sincronicas es la creaccion de estado en REDUX de forma local-Store
-          --Asincronicas va realiza la conexion por fuera de mi aplicativo, debo realizar una configuracion (firebaseConfig) de aqui debo llamar a mis acciones sincronicas
+          --- actiones: existen dos tipos de acciones las sincrónicas y las Asincrónicas
+          -- las Sincrónicas es la creación de estado en REDUX de forma local-Store
+          --Asincrónicas va realiza la conexión por fuera de mi aplicativo, debo realizar una configuración (firebaseConfig) de aquí debo llamar a mis acciones sincrónicas
 
 
 -- como conectar con los componentes...
         - puedo llamar 
-        (boton agregar)-accion- dispatch( a la accion ASINCRONICA)
+        (botón agregar)-acción- dispatch( a la acción ASINCRONICA)
 
 
-----------------------Autenticacion----------------------------------
+----------------------Autenticación----------------------------------
 firebase/auth           getAuth -- traela informacion del usuario actual
 
 
@@ -57,5 +57,4 @@ firebase/firestore/
                         deleteDoc - eliminar
                         updateDoc- modificar
                         addDoc - 
-
 
